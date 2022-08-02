@@ -11,6 +11,10 @@ function App() {
     });
   return (
       <div class={styles.App}>
+          <Show when={userInfo() === null}>
+          <Login />
+          </Show>
+          <Show when={userInfo() !== null}></Show>
         <BookingTable />
       </div>
   );
