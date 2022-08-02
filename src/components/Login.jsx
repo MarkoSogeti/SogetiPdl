@@ -6,7 +6,7 @@ function Login(props) {
 
     return (
         <div class="login">
-        <button>Logga in!</button>
+        <button class="login">Logga in</button>
         </div>
     );
 }
