@@ -7,15 +7,16 @@ import {createSignal, onMount} from "solid-js";
 function App() {
     const [userInfo, setUserInfo] = createSignal("");
     onMount(async () => {
-        await getUserInfo().then((res) => console.log(res));
+        await getUserInfo().then((res) => setUserInfo(res));
     });
   return (
       <div class={styles.App}>
-          <Show when={userInfo() === null}>
+          <Show when={userInfo() === ""}>
           <Login />
           </Show>
-          <Show when={userInfo() !== null}></Show>
+          <Show when={userInfo() !== ""}>
         <BookingTable />
+          </Show>
       </div>
   );
 }
