@@ -11,10 +11,7 @@ function App() {
     });
   return (
       <div class={styles.App}>
-          <Show when={userInfo() === ""}>
-          <Login />
-          </Show>
-          <Show when={userInfo() !== "" && userInfo()}>
+          <Show when={userInfo() !== "" && userInfo()} fallback={<Login />}>
         <BookingTable />
           </Show>
       </div>
