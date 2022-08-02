@@ -11,10 +11,10 @@ function App() {
     });
   return (
       <div class={styles.App}>
-          <Show when={userInfo() === ""}>
+          <Show when={userInfo() === "" && !userInfo()}>
           <Login />
           </Show>
-          <Show when={userInfo() !== ""}>
+          <Show when={userInfo() !== "" && userInfo()}>
         <BookingTable />
           </Show>
       </div>
