@@ -6,11 +6,10 @@ import CheckMark from "./CheckMark";
 
 function BookingTable() {
     const data = ["10/10-2022 18:00", "18/10-2022 18:00", "22/10-2022 18:00"];
-    let language = '';
     const [name, setName] = createSignal("");
     const [showCheckMark, setShowCheckMark] = createSignal(false);
-    const [loggedIn, setShow] = createSignal(false);
-    const toggle = () => {setShow(!loggedIn())}
+    const [showPopup, setShow] = createSignal(false);
+    const toggle = () => {setShow(!showPopup())}
     const confirmBooking = () => { toggle(); setShowCheckMark(true); setTimeout( () => setShowCheckMark(false), 3000)}
 
 
@@ -26,7 +25,7 @@ function BookingTable() {
             </ul>
 
             <Show
-                when={loggedIn()}
+                when={showPopup()}
             >
                 <div class={"popup"} use:clickOutside={() => setShow(false)} >
                     <h1>Boka PADEL</h1>
