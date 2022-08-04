@@ -1,23 +1,26 @@
 import TimeSlot from "./TimeSlot";
-import {createSignal, Show} from "solid-js";
-import clickOutside from "./click-outside";
+import {createSignal, onMount, Show} from "solid-js";
 import CheckMark from "./CheckMark";
+import getTimeSlots from "../service/api-service";
 
 
 function BookingTable() {
-    const data = ["10/10-2022 18:00", "18/10-2022 18:00", "22/10-2022 18:00"];
+    const [data, setData] = createSignal();
     const [name, setName] = createSignal("");
     const [showCheckMark, setShowCheckMark] = createSignal(false);
     const [showPopup, setShow] = createSignal(false);
     const toggle = () => {setShow(!showPopup())}
     const confirmBooking = () => { toggle(); setShowCheckMark(true); setTimeout( () => setShowCheckMark(false), 3000)}
 
+    onMount(async () => {
+        await getTimeSlots().then((result) => {setData(result.resources); console.log(result);} )
+    });
 
     return (
         <div className={'box'} >
             <h2>Sogeti PDL Bokning</h2>
             <ul className={` ${showCheckMark() ? "active" : ""}`}>
-                {data.map((card) =>(
+                {data.time.map((card) =>(
                     <li>
                     <TimeSlot time={card} toggle={toggle}/>
                     </li>
