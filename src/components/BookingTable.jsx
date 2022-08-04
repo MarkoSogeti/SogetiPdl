@@ -5,7 +5,8 @@ import getTimeSlots from "../service/api-service";
 
 
 function BookingTable() {
-    const [data, setData] = createSignal();
+    const data = ["10/10-2022 18:00", "18/10-2022 18:00", "22/10-2022 18:00"];
+    const [data2, setData] = createSignal();
     const [name, setName] = createSignal("");
     const [showCheckMark, setShowCheckMark] = createSignal(false);
     const [showPopup, setShow] = createSignal(false);
@@ -20,7 +21,7 @@ function BookingTable() {
         <div className={'box'} >
             <h2>Sogeti PDL Bokning</h2>
             <ul className={` ${showCheckMark() ? "active" : ""}`}>
-                {data.time.map((card) =>(
+                {data.map((card) =>(
                     <li>
                     <TimeSlot time={card} toggle={toggle}/>
                     </li>
