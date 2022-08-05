@@ -7,9 +7,9 @@ function TimeSlot(props) {
 
 
     return (
-        <div onClick={props.toggle}>
-            <p>{props.time}</p>
-            <p className="remainingPlaces">Återstående platser: 2</p>
+        <div>
+            <p>{props.time ? new Date(props.time).toLocaleDateString() : ''} 18:00</p>
+            <p className="remainingPlaces">Återstående platser: {4- props.participants}</p>
         </div>
     );
 }
