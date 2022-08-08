@@ -19,6 +19,6 @@ export default function addParticipant(selected, userEmail) {
 
     return fetch("https://pdl-api.azurewebsites.net/api/add-participant", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
+        .then(result => result.ok ? console.log(result) : throw new Error("Time is full!"))
         .catch(error => console.log('error', error));
 }
