@@ -17,10 +17,8 @@ function BookingTable(props) {
   };
   const confirmBooking = () => {
     toggle();
-    console.log
     addParticipant(selected(), props.userInfo)
-      .then((res) => {
-        console.log(res.ok + " HOLLAAA");
+      .then(() => {
         setShowCheckMark(true);
         getTimeSlots().then((res) => setData(res.result.resources));
       })
@@ -78,7 +76,7 @@ function BookingTable(props) {
       <Show when={showCheckMark()}>
         <div class="transition">
           <CheckMark />
-          <p>Tiden är bokad!</p>
+          <p>Tiden är bokad/avbokad!</p>
         </div>
       </Show>
     </div>
