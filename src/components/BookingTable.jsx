@@ -4,6 +4,7 @@ import CheckMark from "./CheckMark";
 import getTimeSlots from "../service/api-service";
 import clickOutside from "./click-outside";
 import addParticipant from "../service/add-participant-service";
+import removeParticipant from "../service/remove-particant-service";
 
 
 function BookingTable(props) {
@@ -14,6 +15,9 @@ function BookingTable(props) {
     const [showPopup, setShow] = createSignal(false);
     const toggle = (event, id) => {setShow(!showPopup()); id ? setSelected(id) : ''}
     const confirmBooking = () => { toggle(); setShowCheckMark(true); addParticipant(selected(), props.userInfo).then(() => getTimeSlots().then((res) => setData(res.result.resources ))); setTimeout( () => {setShowCheckMark(false)}, 3000)}
+    const confirmRemove = () => { toggle(); setShowCheckMark(true); removeParticipant(selected(), props.userInfo).then(() => getTimeSlots().then((res) => setData(res.result.resources ))); setTimeout( () => {setShowCheckMark(false)}, 3000)}
+
+
 
     onMount(async () => {
         return getTimeSlots().then((res) => { console.log(res); setData(res.result.resources);} )
@@ -35,7 +39,7 @@ function BookingTable(props) {
                     <h1>Boka PADEL</h1>
                     <div class="button-wrapper">
                         <button onClick={() =>  confirmBooking(selected())}>Boka</button>
-                        <button onClick={() =>  toggle()}>Avboka</button>
+                        <button onClick={() =>  confirmRemove(selected())}>Avboka</button>
                     </div>
                 </div>
             </Show>
