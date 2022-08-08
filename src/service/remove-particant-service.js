@@ -25,6 +25,4 @@ export default function removeParticipant(selected, userEmail) {
             return result;
         })
         .then((response) => response.text())
-
-        .catch((error) => console.log("error", error));
 }

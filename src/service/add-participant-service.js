@@ -27,6 +27,4 @@ export default function addParticipant(selected, userEmail) {
       return result;
     })
     .then((response) => response.text())
-
-    .catch((error) => console.log("error", error));
 }
