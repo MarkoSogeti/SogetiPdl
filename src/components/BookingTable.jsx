@@ -18,7 +18,8 @@ function BookingTable(props) {
   const confirmBooking = () => {
     toggle();
     addParticipant(selected(), props.userInfo)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         setShowCheckMark(true);
         getTimeSlots().then((res) => setData(res.result.resources));
       })
@@ -29,10 +30,11 @@ function BookingTable(props) {
       setShowCheckMark(false);
     }, 3000);
   };
-  const confirmRemove = () => {
+  const confirmRemove = (res) => {
     toggle();
     removeParticipant(selected(), props.userInfo)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         setShowCheckMark(true);
         getTimeSlots().then((res) => setData(res.result.resources));
       })
@@ -76,7 +78,7 @@ function BookingTable(props) {
       <Show when={showCheckMark()}>
         <div class="transition">
           <CheckMark />
-          <p>Tiden är bokad/avbokad!</p>
+          <p>Tiden är bokad!</p>
         </div>
       </Show>
     </div>

@@ -20,7 +20,7 @@ export default function removeParticipant(selected, userEmail) {
     return fetch("https://pdl-api.azurewebsites.net/api/remove-participant", requestOptions)
         .then((result) => {
             if (!result.ok) {
-                throw new Error("Tiden är fullbokad!");
+                throw new Error("Du har inte någon bokning!");
             }
             return result;
         })
