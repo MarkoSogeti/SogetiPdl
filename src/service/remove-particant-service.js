@@ -18,7 +18,13 @@ export default function removeParticipant(selected, userEmail) {
     };
 
     return fetch("https://pdl-api.azurewebsites.net/api/remove-participant", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        .then((result) => {
+            if (!result.ok) {
+                throw new Error("Tiden är fullbokad!");
+            }
+            return result;
+        })
+        .then((response) => response.text())
+
+        .catch((error) => console.log("error", error));
 }

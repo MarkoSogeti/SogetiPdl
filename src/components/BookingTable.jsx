@@ -17,8 +17,10 @@ function BookingTable(props) {
   };
   const confirmBooking = () => {
     toggle();
+    console.log
     addParticipant(selected(), props.userInfo)
-      .then(() => {
+      .then((res) => {
+        console.log(res.ok + " HOLLAAA");
         setShowCheckMark(true);
         getTimeSlots().then((res) => setData(res.result.resources));
       })
