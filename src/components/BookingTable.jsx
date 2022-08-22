@@ -10,6 +10,7 @@ function BookingTable(props) {
   const [data, setData] = createSignal([]);
   const [selected, setSelected] = createSignal("");
   const [showCheckMark, setShowCheckMark] = createSignal(false);
+  const [showFailure, setShowFailure] = createSignal(false);
   const [showPopup, setShow] = createSignal(false);
   const toggle = (event, id) => {
     setShow(!showPopup());
@@ -18,27 +19,27 @@ function BookingTable(props) {
   const confirmBooking = () => {
     toggle();
     addParticipant(selected(), props.userInfo)
-      .then((res) => {
-        console.log(res + " HEJ");
+      .then(() => {
         setShowCheckMark(true);
         getTimeSlots().then((res) => setData(res.result.resources));
       })
       .catch((e) => {
+        setShowFailure(true);
         console.log("Failed to add participant" + e);
       });
     setTimeout(() => {
       setShowCheckMark(false);
     }, 3000);
   };
-  const confirmRemove = (res) => {
+  const confirmRemove = () => {
     toggle();
     removeParticipant(selected(), props.userInfo)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         setShowCheckMark(true);
         getTimeSlots().then((res) => setData(res.result.resources));
       })
       .catch((e) => {
+        setShowFailure(true);
         console.log("Failed to add participant" + e);
       });
     setTimeout(() => {
