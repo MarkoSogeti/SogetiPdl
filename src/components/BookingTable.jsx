@@ -50,7 +50,7 @@ function BookingTable(props) {
   onMount(async () => {
     return getTimeSlots().then((res) => {
       console.log(res);
-      setData(res.result.resources);
+      setData(res.filteredResults);
     });
   });
   return (
