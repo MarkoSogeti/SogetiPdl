@@ -9,8 +9,6 @@ function App() {
   onMount(async () => {
     await getUserInfo().then((res) => {
       setUserInfo(res);
-      console.log(userInfo());
-      console.log("HEJ!");
     });
   });
   return (
