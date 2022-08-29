@@ -5,6 +5,7 @@ import getTimeSlots from "../service/api-service";
 import clickOutside from "./click-outside";
 import addParticipant from "../service/add-participant-service";
 import removeParticipant from "../service/remove-particant-service";
+import LoadingIcon from "./LoadingIcon";
 
 function BookingTable(props) {
   const [data, setData] = createSignal([]);
@@ -51,21 +52,10 @@ function BookingTable(props) {
   onMount(async () => {
     return getTimeSlots().then((res) => {
       setData(res.filteredResults);
-      setLoaded(true);
     });
   });
   return (
-    <Show
-      when={loaded()}
-      fallback={
-        <div class="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      }
-    >
+    <Show when={loaded()} fallback={<LoadingIcon />}>
       <div className={"box"}>
         <h2>Sogeti PDL Bokning</h2>
         <Show
