@@ -55,7 +55,17 @@ function BookingTable(props) {
     });
   });
   return (
-    <Show when={loaded()}>
+    <Show
+      when={loaded()}
+      fallback={
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      }
+    >
       <div className={"box"}>
         <h2>Sogeti PDL Bokning</h2>
         <Show
