@@ -21,7 +21,7 @@ function BookingTable(props) {
     addParticipant(selected(), props.userInfo)
       .then(() => {
         setShowCheckMark(true);
-        getTimeSlots().then((res) => setData(res.result.resources));
+        getTimeSlots().then((res) => setData(res.filteredResults));
       })
       .catch((e) => {
         setShowFailure(true);
