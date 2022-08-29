@@ -79,7 +79,6 @@ function BookingTable(props) {
       <Show when={showCheckMark()}>
         <div class="transition">
           <CheckMark />
-          <p>Tiden är bokad!</p>
         </div>
       </Show>
     </div>
