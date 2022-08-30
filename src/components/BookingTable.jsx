@@ -6,6 +6,7 @@ import clickOutside from "./click-outside";
 import addParticipant from "../service/add-participant-service";
 import removeParticipant from "../service/remove-particant-service";
 import LoadingIcon from "./LoadingIcon";
+import CrossMark from "./CrossMark";
 
 function BookingTable(props) {
   const [data, setData] = createSignal([]);
@@ -31,6 +32,7 @@ function BookingTable(props) {
       });
     setTimeout(() => {
       setShowCheckMark(false);
+      setShowFailure(false);
     }, 3000);
   };
   const confirmRemove = () => {
@@ -46,6 +48,7 @@ function BookingTable(props) {
       });
     setTimeout(() => {
       setShowCheckMark(false);
+      setShowFailure(false);
     }, 3000);
   };
 
@@ -95,6 +98,11 @@ function BookingTable(props) {
         <Show when={showCheckMark()}>
           <div class="transition">
             <CheckMark />
+          </div>
+        </Show>
+        <Show when={showFailure()}>
+          <div class="transition">
+            <CrossMark />
           </div>
         </Show>
       </div>
