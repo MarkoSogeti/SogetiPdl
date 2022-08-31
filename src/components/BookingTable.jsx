@@ -51,6 +51,16 @@ function BookingTable(props) {
       setShowFailure(false);
     }, 3000);
   };
+  function hasUserBooked (participants, user) {
+    var match = false;
+    <For each={participants}>
+    {(item) => {
+      if (item === user)
+        match = true;
+    }}
+  </For>
+    return match;
+  }
 
   onMount(async () => {
     return getTimeSlots().then((res) => {
@@ -81,6 +91,7 @@ function BookingTable(props) {
                     card.participants ? card.participants.length : 0
                   }
                   id={card.id}
+                  hasUserBooked = {hasUserBooked(card.participants, props.userInfo)}
                 />
               </li>
             ))}
