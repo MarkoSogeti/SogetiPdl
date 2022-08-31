@@ -51,15 +51,8 @@ function BookingTable(props) {
       setShowFailure(false);
     }, 3000);
   };
-  function hasUserBooked (participants, user) {
-    var match = false;
-    <For each={participants}>
-    {(item) => {
-      if (item === user)
-        match = true;
-    }}
-  </For>
-    return match;
+  const hasUserBooked = (participants, user) => {
+    return participants.includes(user);
   }
 
   onMount(async () => {
